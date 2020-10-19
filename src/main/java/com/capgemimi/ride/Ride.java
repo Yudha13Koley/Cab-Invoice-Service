@@ -3,7 +3,7 @@ package com.capgemimi.ride;
 public class Ride {
 	private double distance;
 	private double minutes;
-	
+
 	public Ride(double distance, double minutes) {
 		super();
 		this.distance = distance;
@@ -25,7 +25,5 @@ public class Ride {
 	public void setMinutes(double minutes) {
 		this.minutes = minutes;
 	}
-	
-	
 
 }

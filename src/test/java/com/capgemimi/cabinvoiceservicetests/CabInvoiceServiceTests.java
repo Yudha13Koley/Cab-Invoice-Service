@@ -38,13 +38,22 @@ public class CabInvoiceServiceTests {
 		double fare = cabInvoiceService.getFare(rides).getTotalFare();
 		Assert.assertEquals(30, fare, 0.01);
 	}
-	
+
 	@Test
 	public void GivenMultipleRides_WhenGeneratedInvoice_ShouldReturnSummary() {
 		Ride[] rides = { new Ride(2, 5), new Ride(0.1, 2) };
 		InvoiceSummary summary = cabInvoiceService.getFare(rides);
-		InvoiceSummary expectedSummary=new InvoiceSummary(2,30);
-		Assert.assertEquals(expectedSummary,summary);
+		InvoiceSummary expectedSummary = new InvoiceSummary(2, 30);
+		Assert.assertEquals(expectedSummary, summary);
+	}
+
+	@Test
+	public void GivenMultipleRidesForAnID_WhenGeneratedInvoice_ShouldReturnSummaryForThatId() {
+		Ride[] rides = { new Ride(2, 5), new Ride(0.1, 2) };
+		cabInvoiceService.addRideDetailsForAnId(1, rides);
+		InvoiceSummary summary = cabInvoiceService.getInvoiceSummaryForAnId(1);
+		InvoiceSummary expectedSummary = new InvoiceSummary(2, 30);
+		Assert.assertEquals(expectedSummary, summary);
 	}
 
 }

@@ -54,4 +54,10 @@ public class InvoiceSummary {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "InvoiceSummary [noOfRides=" + noOfRides + ", totalFare=" + totalFare + ", avgFarePerRide="
+				+ avgFarePerRide + "]";
+	}
+
 }
