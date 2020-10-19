@@ -3,11 +3,25 @@ package com.capgemimi.ride;
 public class Ride {
 	private double distance;
 	private double minutes;
+	private RideType rideType;
 
-	public Ride(double distance, double minutes) {
+	public enum RideType {
+		NORMAL_RIDE, PREMIUM_RIDE
+	}
+
+	public Ride(double distance, double minutes, RideType type) {
 		super();
 		this.distance = distance;
 		this.minutes = minutes;
+		this.rideType = type;
+	}
+
+	public RideType getRideType() {
+		return rideType;
+	}
+
+	public void setRideType(RideType rideType) {
+		this.rideType = rideType;
 	}
 
 	public double getDistance() {
