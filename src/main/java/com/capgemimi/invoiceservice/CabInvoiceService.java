@@ -1,6 +1,7 @@
 package com.capgemimi.invoiceservice;
 
 import com.capgemimi.ride.Ride;
+import com.capgemimi.summary.InvoiceSummary;
 
 public class CabInvoiceService {
 
@@ -15,12 +16,12 @@ public class CabInvoiceService {
 	}
 
 
-	public double getFare(Ride[] rides) {
+	public InvoiceSummary getFare(Ride[] rides) {
 		double totalfare=0.0;
 		for(Ride ride:rides) {
 			totalfare+=this.getFare(ride.getDistance(),ride.getMinutes());
 		}
-		return totalfare;
+		return new InvoiceSummary(rides.length,totalfare);
 	}
 
 }

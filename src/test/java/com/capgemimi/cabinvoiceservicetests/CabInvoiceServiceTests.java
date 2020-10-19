@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import com.capgemimi.invoiceservice.CabInvoiceService;
 import com.capgemimi.ride.Ride;
+import com.capgemimi.summary.InvoiceSummary;
 
 public class CabInvoiceServiceTests {
 	CabInvoiceService cabInvoiceService;
@@ -34,8 +35,16 @@ public class CabInvoiceServiceTests {
 	@Test
 	public void GivenMultipleRides_WhenGeneratedInvoice_ShouldReturnTotalFare() {
 		Ride[] rides = { new Ride(2, 5), new Ride(0.1, 2) };
-		double fare = cabInvoiceService.getFare(rides);
+		double fare = cabInvoiceService.getFare(rides).getTotalFare();
 		Assert.assertEquals(30, fare, 0.01);
+	}
+	
+	@Test
+	public void GivenMultipleRides_WhenGeneratedInvoice_ShouldReturnSummary() {
+		Ride[] rides = { new Ride(2, 5), new Ride(0.1, 2) };
+		InvoiceSummary summary = cabInvoiceService.getFare(rides);
+		InvoiceSummary expectedSummary=new InvoiceSummary(2,30);
+		Assert.assertEquals(expectedSummary,summary);
 	}
 
 }
